@@ -1,9 +1,9 @@
 function newItem(){
 
     let li = $('<li></li>');
-    let inputValue = $('input').val();
+    let inputValue = $('#input').val();
     // let text = document.createTextNode(inputValue);
-    list.append(text);
+    li.append(inputValue);
     
     if (inputValue === '') {
         alert("Write something ;D");
@@ -13,21 +13,26 @@ function newItem(){
     
     // Crossing out an item from the list of items:
     function crossOut() {
-    li.toggleCalss("strike"); // li.addClass("strike");
+       li.toggleClass('strike'); // li.addClass("strike");
     }
-    
+
+    li.on('dblclick', function crossOut() {
+		li.toggleClass('.strike');
+	});
+
+    li.on('dblclick', () => li.toggleClass('strike'));
+
     // Adding the delete button "X": 
-    let crossOutButton = $("crossOutButton"); // To check
-    crossOutButton.append(document.createTextNode('X'));
+    let crossOutButton = $('<crossOutButton>X</crossOutButton>')
+    // crossOutButton.append(document.createTextNode('X'));
     li.append(crossOutButton);
 
     // Adding CLASS DELETE (DISPLAY: NONE) from the css:
-    crossOutButton.on("click", deleteListItem);
-    function deleteListItem(){
-    li.addList.add("delete")
+    crossOutButton.on('click', deleteListItem);
+    function deleteListItem() {
+        li.addClass('delete');
     }
 
     // Reordering the items: 
     $('#list').sortable();
-    
-}
+};
